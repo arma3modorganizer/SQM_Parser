@@ -1,0 +1,24 @@
+WHITESPACE = _{" " | "\t" | "\r" | "\n"}
+char = _{(LETTER | NUMBER | "." | "_" | "-" | ":" | "/" | "&" | "\\" | "#")}
+string = _{(char|WHITESPACE)*}
+strict_string = _{"\"" ~ (char|WHITESPACE | "[" | "]" | "'" | "," | "{" | "}" | "(" | ")" | "!" | ";" )* ~ "\""}
+number = _{ASCII_DIGIT*}
+key = {string}
+value = {strict_string | string}
+item = {key ~ "=" ~ value ~ ";"}
+array = {
+			key ~ "[]=" ~ WHITESPACE* ~ 
+            (
+            	"{" ~ WHITESPACE* ~ "};"
+                |
+                "{" ~ WHITESPACE* ~ value ~ ("," ~ value)* ~ "};"
+            )
+        }
+class = { "class" ~ key ~ WHITESPACE* ~ 
+			"{" ~ WHITESPACE* ~
+            ((class|item|array) ~ WHITESPACE*)* ~
+            WHITESPACE* ~
+            "};"
+        }
+
+file = {(item | class | WHITESPACE | array)*}
