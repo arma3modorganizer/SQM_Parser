@@ -11,7 +11,6 @@ extern crate pest;
 extern crate pest_derive;
 
 use pest::iterators::{Pairs, Pair};
-use crate::sqm::item::Item;
 use crate::sqm::file::File;
 use crate::sqm::array::Array;
 use crate::sqm::class::Class;
@@ -23,6 +22,7 @@ mod sqm;
 #[derive(Parser)]
 #[grammar = "sqm.pest"]
 pub struct SQMParser;
+
 
 pub fn serialize_sqm_string(sqm_data: &str, pretty: bool) -> String{
     let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, sqm_data).unwrap();
@@ -44,21 +44,24 @@ pub fn parse_file(filedata: Pairs<Rule>) -> File{
 
 
     let mut file_strc: File = File{
-        items: vec![],
-        arrays: vec![],
-        classes: vec![]
+        items: Default::default(),
+        arrays: Default::default(),
+        classes: Default::default()
     };
 
     for top_level_entries in file {
         match top_level_entries.as_rule() {
             Rule::item => {
-                 file_strc.items.push(parse_item(top_level_entries));
+                let items = parse_item(top_level_entries);
+                file_strc.items.insert(items.0, items.1);
             }
             Rule::class => {
-                file_strc.classes.push(parse_class(top_level_entries));
+                let items = parse_class(top_level_entries);
+                file_strc.classes.insert(items.0, items.1);
             }
             Rule::array => {
-                file_strc.arrays.push(parse_array(top_level_entries));
+                let items = parse_array(top_level_entries);
+                file_strc.arrays.insert(items.0, items.1);
             }
             Rule::WHITESPACE | Rule::char | Rule::string | Rule::strict_string | Rule::number | Rule::key | Rule::value | Rule::file => unreachable!()
         }
@@ -66,28 +69,31 @@ pub fn parse_file(filedata: Pairs<Rule>) -> File{
     file_strc
 }
 
-pub fn parse_class(item: Pair<Rule>) -> Class{
+pub fn parse_class(item: Pair<Rule>) -> (String, Class) {
     let inner = item.into_inner();
     let mut retclass: Class = Class{
-        key: "".to_string(),
-        items: vec![],
-        arrays: vec![],
-        classes: vec![]
+        items: Default::default(),
+        arrays: Default::default(),
+        classes: Default::default()
     };
 
+    let mut key: String = "".to_string();
     for items in inner {
         match items.as_rule() {
             Rule::key => {
-                retclass.key = get_string_from_pair(&items)
+                key = get_string_from_pair(&items)
             }
             Rule::item => {
-                retclass.items.push(parse_item(items));
+                let items = parse_item(items);
+                retclass.items.insert(items.0, items.1);
             }
             Rule::class => {
-                retclass.classes.push(parse_class(items));
+                let items = parse_class(items);
+                retclass.classes.insert(items.0, items.1);
             }
             Rule::array => {
-                retclass.arrays.push(parse_array(items));
+                let items = parse_array(items);
+                retclass.arrays.insert(items.0, items.1);
             }
             Rule::WHITESPACE | Rule::char | Rule::string | Rule::strict_string | Rule::number | Rule::value | Rule::file => unreachable!()
         }
@@ -95,28 +101,26 @@ pub fn parse_class(item: Pair<Rule>) -> Class{
 
     //println!("{:#?}", retclass);
 
-    retclass
+    (key, retclass)
 }
 
-pub fn parse_item(item: Pair<Rule>) -> Item{
+pub fn parse_item(item: Pair<Rule>) -> (String, String){
     let mut inner = item.into_inner();
     let key = get_string_from_pair(&inner.next().unwrap());
     let value = get_string_from_pair(&inner.next().unwrap());
-    Item{
-        key,
-        value
-    }
+    (key, value)
 }
 
-pub fn parse_array(item: Pair<Rule>) -> Array{
+pub fn parse_array(item: Pair<Rule>) -> (String, Array){
     let inner = item.into_inner();
 
-    let mut retarray: Array = Array{ key: "".to_string(), values: vec![] };
+    let mut retarray: Array = Array{ values: vec![] };
+    let mut key: String = "".to_string();
 
     for x in inner {
         match x.as_rule() {
             Rule::key => {
-                retarray.key =  get_string_from_pair(&x);
+                key =  get_string_from_pair(&x);
             }
             Rule::value => {
                 retarray.values.push(get_string_from_pair(&x));
@@ -124,7 +128,7 @@ pub fn parse_array(item: Pair<Rule>) -> Array{
             Rule::WHITESPACE | Rule::char | Rule::string | Rule::strict_string | Rule::number | Rule::item | Rule::array | Rule::class | Rule::file => unreachable!()
         }
     }
-    retarray
+    (key, retarray)
 }
 
 fn get_string_from_pair(pair: &Pair<Rule>) -> String{

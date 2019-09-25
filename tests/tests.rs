@@ -114,4 +114,13 @@ mod tests {
         let mut file = File::create("mission.json").unwrap();
         file.write_all(json.as_bytes()).unwrap();
     }
+
+    #[test]
+    fn edit_mission(){
+        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
+        let mut parsed_file = parse_file(parsed);
+
+
+        println!("{:#?}", camera_pos);
+    }
 }
