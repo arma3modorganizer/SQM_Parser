@@ -105,10 +105,12 @@ mod tests {
 
     #[test]
     fn test_parser(){
+        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
+        let parsed_file = parse_file(parsed);
 
-        let json = serialize_sqm_string(&include_str!("mission.sqm"), true);
-        println!("{:#?}", json);
+        assert_eq!(parsed_file.items[0].key, "version");
 
+        let json = serialize_pairs(&parsed_file, true);
         let mut file = File::create("mission.json").unwrap();
         file.write_all(json.as_bytes()).unwrap();
     }
