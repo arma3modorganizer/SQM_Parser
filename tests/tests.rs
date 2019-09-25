@@ -108,7 +108,7 @@ mod tests {
         let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
         let parsed_file = parse_file(parsed);
 
-        assert_eq!(parsed_file.items[0].key, "version");
+        assert_eq!(parsed_file.items["version"], "53");
 
         let json = serialize_pairs(&parsed_file, true);
         let mut file = File::create("mission.json").unwrap();
@@ -116,11 +116,10 @@ mod tests {
     }
 
     #[test]
-    fn edit_mission(){
+    fn test_deserializer(){
         let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
-        let mut parsed_file = parse_file(parsed);
-
-
-        println!("{:#?}", camera_pos);
+        let parsed_file = parse_file(parsed);
+        let json_data = serialize_pairs(&parsed_file, false);
+        println!("{:#?}", json_data);
     }
 }

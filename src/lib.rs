@@ -23,6 +23,9 @@ mod sqm;
 #[grammar = "sqm.pest"]
 pub struct SQMParser;
 
+pub fn deserialize_json(json_string: &str) -> File{
+    serde_json::from_str(json_string).unwrap()
+}
 
 pub fn serialize_sqm_string(sqm_data: &str, pretty: bool) -> String{
     let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, sqm_data).unwrap();
