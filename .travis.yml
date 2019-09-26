@@ -6,9 +6,9 @@ os:
   - linux
 before_script:
   - cargo install cargo-kcov --force
-  - rustup component add clippy-preview --toolchain=nightly || cargo install --git https://github.com/rust-lang/rust-clippy/ --force clippy
+  - rustup component add clippy-preview --toolchain=nightly
 script:
-  - cargo clippy --all-targets --all-features -- -D warnings
+  - cargo clippy --all-targets --all-features -- -W clippy::all -W clippy::pedantic -W clippy::restriction -W clippy::nursery -D warnings
   - cargo build --verbose --all
   - cargo test --verbose --all
   - cargo doc --no-deps
