@@ -1,6 +1,6 @@
 [package]
 name = "sqm_parser"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Scarjit <scarjit@aol.com>"]
 edition = "2018"
 
