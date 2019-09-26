@@ -8,7 +8,7 @@ before_script:
   - rustup toolchain install nightly-2019-09-25-x86_64-unknown-linux-gnu
   - rustup default nightly-2019-09-25-x86_64-unknown-linux-gnu
   - cargo install cargo-kcov --force
-  - rustup component add clippy-preview --toolchain=nightly
+  - rustup component add clippy-preview
 script:
   - cargo clippy --all-targets --all-features -- -W clippy::all -W clippy::pedantic -W clippy::restriction -W clippy::nursery -D warnings
   - cargo build --verbose --all
