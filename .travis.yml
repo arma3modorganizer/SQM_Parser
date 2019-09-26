@@ -1,0 +1,31 @@
+language: rust
+rust:
+  - nightly
+cache: cargo
+os:
+  - linux
+before_script:
+  - cargo install cargo-kcov --force
+  - rustup component add clippy --toolchain=nightly || cargo install --git https://github.com/rust-lang/rust-clippy/ --force clippy
+script:
+  - cargo clippy --all-targets --all-features -- -D warnings
+  - cargo build --verbose --all
+  - cargo test --verbose --all
+  - cargo doc --no-deps
+
+after_success:
+  - if [[ "$TRAVIS_RUST_VERSION" == "nightly" ]] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cargo kcov --print-install-kcov-sh | sh; fi
+  - if [[ "$TRAVIS_RUST_VERSION" == "nightly" ]] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cargo kcov --coveralls; fi
+addons:
+  apt:
+    sources:
+      - kalakris-cmake
+    packages:
+      - cmake
+      - libcurl4-openssl-dev
+      - libiberty-dev
+      - libelf-dev
+      - libdw-dev
+      - binutils-dev
+      - libpcap-dev
+      - bison
