@@ -3,6 +3,8 @@ name = "sqm_parser"
 version = "1.0.1"
 authors = ["Scarjit <scarjit@aol.com>"]
 edition = "2018"
+license = "MIT"
+description = "De/serializes ArmA3 SQM files."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
