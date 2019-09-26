@@ -7,14 +7,14 @@ pub struct Array{
 }
 
 impl Array{
-    pub fn walk(&self, name: &String, mut file: &std::fs::File, depth: u64){
+    pub fn walk(&self, name: &str, mut file: &std::fs::File, depth: u64){
         let t = (0..depth).map(|_| "\t").collect::<String>();
-        let t2 = (0..depth+1).map(|_| "\t").collect::<String>();
-        file.write(format!("{}{}[]={{\r\n",t, name).as_bytes());
+        let t2 = (0..=depth).map(|_| "\t").collect::<String>();
+        file.write_all(format!("{}{}[]={{\r\n",t, name).as_bytes()).unwrap();
 
         for v in &self.values {
-            file.write(format!("{}{},\r\n",t2, v).as_bytes());
+            file.write_all(format!("{}{},\r\n",t2, v).as_bytes()).unwrap();
         }
-        file.write(format!("{}}};\r\n", t).as_bytes());
+        file.write_all(format!("{}}};\r\n", t).as_bytes()).unwrap();
     }
 }

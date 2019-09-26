@@ -18,15 +18,15 @@ impl File {
         println!("{:?}", self);
 
         for item in &self.items {
-            file.write(format!("{}={};\r\n", item.0, item.1).as_bytes());
+            file.write_all(format!("{}={};\r\n", item.0, item.1).as_bytes()).unwrap();
         }
 
         for array in &self.arrays {
-            array.1.walk(array.0, &mut file, depth);
+            array.1.walk(array.0, file, depth);
         }
 
         for class in &self.classes {
-            class.1.walk(class.0, &mut file, depth);
+            class.1.walk(class.0, file, depth);
         }
     }
 }
