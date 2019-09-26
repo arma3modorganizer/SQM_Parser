@@ -1,6 +1,19 @@
 #[cfg(test)]
 mod tests {
 
+    #![allow(
+    clippy::missing_docs_in_private_items,
+    clippy::missing_inline_in_public_items,
+    clippy::implicit_return,
+    clippy::result_unwrap_used,
+    clippy::option_unwrap_used,
+    clippy::print_stdout,
+    clippy::use_debug,
+    clippy::integer_arithmetic,
+    clippy::default_trait_access,
+    clippy::never_loop,
+    )]
+
     use pest::Parser;
     use pest::iterators::Pairs;
     use sqm_parser::*;
@@ -19,8 +32,7 @@ mod tests {
             vec!["version", "53"],
         ];
 
-        let mut i = 0;
-        for test_entry in test_arrays {
+        for (i, test_entry) in test_arrays.iter().enumerate() {
             let parsed: Result<Pairs<Rule>, pest::error::Error<Rule>> = SQMParser::parse(Rule::item, test_entry);
             let mut actual_vec: Vec<&str> = vec![];
             match parsed {
@@ -36,8 +48,7 @@ mod tests {
                     panic!(e)
                 }
             }
-            assert_eq!(result_arrays[i], actual_vec);
-            i += 1;
+            assert_eq!(result_arrays.get(i).expect("Couldn't get expected result"), &actual_vec);
         }
     }
 
@@ -60,8 +71,7 @@ mod tests {
             vec!["addons", "\"keko_common\"", "\"A3_Modules_F_Curator_Curator\"", "\"A3_Characters_F\"",],
         ];
 
-        let mut i = 0;
-        for test_entry in test_arrays {
+        for (i, test_entry) in test_arrays.iter().enumerate() {
             let parsed: Result<Pairs<Rule>, pest::error::Error<Rule>> = SQMParser::parse(Rule::array, test_entry);
             let mut actual_vec: Vec<&str> = vec![];
             match parsed {
@@ -77,8 +87,7 @@ mod tests {
                     panic!(e)
                 }
             }
-            assert_eq!(result_arrays[i], actual_vec);
-            i += 1;
+            assert_eq!(result_arrays.get(i).expect("Couldn't get expected result"), &actual_vec);
         }
     }
 
@@ -108,7 +117,7 @@ mod tests {
         let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, include_str!("mission.sqm")).unwrap();
         let parsed_file = parse_file(parsed);
 
-        assert_eq!(parsed_file.items["version"], "53");
+        assert_eq!(parsed_file.items.get("version").expect("Couldn't get version"), "53");
 
         let json = serialize_pairs(&parsed_file, true);
         let mut file = File::create("mission.json").unwrap();
