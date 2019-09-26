@@ -4,6 +4,8 @@ clippy::missing_inline_in_public_items,
 clippy::implicit_return,
 clippy::result_unwrap_used,
 clippy::option_unwrap_used,
+clippy::print_stdout,
+clippy::use_debug,
 )]
 
 extern crate pest;
@@ -41,6 +43,11 @@ pub fn serialize_pairs(filedata: &File, pretty: bool) -> String{
     }
 }
 
+pub fn serialize_to_sqm(filedata: &File, filename: &str){
+    let file = std::fs::File::create(filename).unwrap();
+
+    filedata.walk(&file);
+}
 
 pub fn parse_file(filedata: Pairs<Rule>) -> File{
     let file = filedata.enumerate().nth(0).unwrap().1.into_inner();

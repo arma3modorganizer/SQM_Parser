@@ -105,7 +105,7 @@ mod tests {
 
     #[test]
     fn test_parser(){
-        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
+        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, include_str!("mission.sqm")).unwrap();
         let parsed_file = parse_file(parsed);
 
         assert_eq!(parsed_file.items["version"], "53");
@@ -117,9 +117,26 @@ mod tests {
 
     #[test]
     fn test_deserializer(){
-        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, &include_str!("mission.sqm")).unwrap();
+        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, include_str!("mission.sqm")).unwrap();
         let parsed_file = parse_file(parsed);
         let json_data = serialize_pairs(&parsed_file, false);
-        println!("{:#?}", json_data);
+
+        let deserialized_file = deserialize_json(&json_data);
+
+        assert_eq!(parsed_file.items.len(), deserialized_file.items.len());
+        assert_eq!(parsed_file.classes.len(), deserialized_file.classes.len());
+        assert_eq!(parsed_file.arrays.len(), deserialized_file.arrays.len());
+    }
+
+    #[test]
+    fn attempt_sqm_construction(){
+        let mission_data = include_str!("mission.sqm");
+        let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, mission_data).unwrap();
+        let parsed_file = parse_file(parsed);
+
+        serialize_to_sqm(&parsed_file, "test.sqm");
+
+
+
     }
 }

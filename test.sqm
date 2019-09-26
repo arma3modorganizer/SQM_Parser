@@ -1,0 +1,707 @@
+binarizationWanted=0;
+randomSeed=2089709;
+version=53;
+addons[]={
+	"CUP_Editor_Structures_Config",
+	"A3_Props_F_Orange_Humanitarian_Camps",
+	"A3_Structures_F_EPB_Civ_Camping",
+	"ace_interaction",
+	"ace_cargo",
+	"ace_dragging",
+	"A3_Structures_F_Civ_Camping",
+	"A3_Props_F_Orange_Humanitarian_Supplies",
+	"A3_Structures_F_Orange_Industrial_Cargo",
+	"A3_Structures_F_Orange_Humanitarian_Flags",
+	"A3_Soft_F_Orange_Offroad_01",
+	"A3_Structures_F_Civ_Constructions",
+	"A3_Structures_F_Items_Electronics",
+	"A3_Structures_F_EPA_Civ_Constructions",
+	"A3_Props_F_Exp_A_Military_Equipment",
+	"A3_Structures_F_Orange_Signs_Special",
+	"A3_Structures_F_Orange_Humanitarian_Camps",
+	"rhsgref_c_air",
+	"A3_Soft_F_Orange_Van_02",
+	"A3_Soft_F_Orange_Truck_02",
+	"A3_Characters_F_Orange",
+	"po_factions_afr",
+	"keko_faction_generic",
+	"rhsusf_c_weapons",
+	"ace_compat_rhs_usf3",
+	"A3_Weapons_F",
+	"GSG9_Headwears",
+	"Ulbrichts_Helmets",
+	"Gsg9_Uniforms",
+	"GSG9_Vest",
+	"ace_hearing",
+	"ace_captives",
+	"ace_medical",
+	"adv_aceSplint",
+	"bwa3_optics",
+	"bwa3_comp_ace",
+	"bwa3_mg5",
+	"keko_loadout",
+	"A3_Modules_F_Curator_Curator",
+	"A3_Characters_F",
+	"keko_common",
+	"Grille_SuperPuma_bpol",
+	"A3_Structures_F_Mil_Helipads",
+	"A3_Structures_F_Civ_InfoBoards",
+	"A3_Props_F_Exp_Military_Camps",
+	"blackorder_item",
+};
+class ScenarioData
+{
+	enableTeamSwitch=0;
+	author="Grille";
+	respawn=3;
+	loadScreen="\x\keko\addons\common\pictures\intro.paa";
+	respawnDelay=10;
+	onLoadMission="www.kellerkompanie.com";
+	disabledAI=1;
+	class Header
+	{
+		minPlayers=1;
+		gameType="COOP";
+		maxPlayers=17;
+	};
+};
+class EditorData
+{
+	toggles=1;
+	moveGridStep=1;
+	angleGridStep=0.2617994;
+	autoGroupingDist=10;
+	scaleGridStep=1;
+	class ItemIDProvider
+	{
+		nextID=311;
+	};
+	class LayerIndexProvider
+	{
+		nextID=20;
+	};
+	class Camera
+	{
+	up[]={
+		0.040933143,
+		0.92560709,
+		-0.37587714,
+	};
+	aside[]={
+		-0.99424845,
+		-1.4211051e-005,
+		-0.1082385,
+	};
+	pos[]={
+		1029.3418,
+		18.197357,
+		1725.0378,
+	};
+	dir[]={
+		0.10024807,
+		-0.37786025,
+		-0.92055154,
+	};
+	};
+};
+class CustomAttributes
+{
+	class Category0
+	{
+		nAttributes=1;
+		name="Multiplayer";
+		class Attribute0
+		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class value
+					{
+						items=1;
+						class Item0
+						{
+							class data
+							{
+								value="Counter";
+								class type
+								{
+								type[]={
+									"STRING",
+								};
+								};
+							};
+						};
+					};
+					class type
+					{
+					type[]={
+						"ARRAY",
+					};
+					};
+				};
+			};
+		};
+	};
+	class Category1
+	{
+		name="Scenario";
+		nAttributes=1;
+		class Attribute0
+		{
+			property="cba_settings_hash";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+					type[]={
+						"ARRAY",
+					};
+					};
+					class value
+					{
+						items=4;
+						class Item2
+						{
+							class data
+							{
+								class value
+								{
+									items=4;
+									class Item0
+									{
+										class data
+										{
+											class type
+											{
+											type[]={
+												"ARRAY",
+											};
+											};
+											class value
+											{
+												items=2;
+												class Item1
+												{
+													class data
+													{
+														value=1;
+														class type
+														{
+														type[]={
+															"SCALAR",
+														};
+														};
+													};
+												};
+												class Item0
+												{
+													class data
+													{
+														value="kekoCustom";
+														class type
+														{
+														type[]={
+															"STRING",
+														};
+														};
+													};
+												};
+											};
+										};
+									};
+									class Item3
+									{
+										class data
+										{
+											class type
+											{
+											type[]={
+												"ARRAY",
+											};
+											};
+											class value
+											{
+												items=2;
+												class Item1
+												{
+													class data
+													{
+														value=1;
+														class type
+														{
+														type[]={
+															"SCALAR",
+														};
+														};
+													};
+												};
+												class Item0
+												{
+													class data
+													{
+														value=1;
+														class type
+														{
+														type[]={
+															"SCALAR",
+														};
+														};
+													};
+												};
+											};
+										};
+									};
+									class Item1
+									{
+										class data
+										{
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														value=0;
+														class type
+														{
+														type[]={
+															"BOOL",
+														};
+														};
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														value=1;
+														class type
+														{
+														type[]={
+															"SCALAR",
+														};
+														};
+													};
+												};
+											};
+											class type
+											{
+											type[]={
+												"ARRAY",
+											};
+											};
+										};
+									};
+									class Item2
+									{
+										class data
+										{
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														value=0;
+														class type
+														{
+														type[]={
+															"BOOL",
+														};
+														};
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														value=1;
+														class type
+														{
+														type[]={
+															"SCALAR",
+														};
+														};
+													};
+												};
+											};
+											class type
+											{
+											type[]={
+												"ARRAY",
+											};
+											};
+										};
+									};
+								};
+								class type
+								{
+								type[]={
+									"ARRAY",
+								};
+								};
+							};
+						};
+						class Item3
+						{
+							class data
+							{
+								nil=1;
+								class type
+								{
+								type[]={
+									"ANY",
+								};
+								};
+							};
+						};
+						class Item0
+						{
+							class data
+							{
+								value="#CBA_HASH#";
+								class type
+								{
+								type[]={
+									"STRING",
+								};
+								};
+							};
+						};
+						class Item1
+						{
+							class data
+							{
+								class value
+								{
+									items=4;
+									class Item0
+									{
+										class data
+										{
+											value="keko_loadout_loadoutfaction";
+											class type
+											{
+											type[]={
+												"STRING",
+											};
+											};
+										};
+									};
+									class Item1
+									{
+										class data
+										{
+											value="keko_unknown_weapon_enabled";
+											class type
+											{
+											type[]={
+												"STRING",
+											};
+											};
+										};
+									};
+									class Item3
+									{
+										class data
+										{
+											value="ace_medical_enablefor";
+											class type
+											{
+											type[]={
+												"STRING",
+											};
+											};
+										};
+									};
+									class Item2
+									{
+										class data
+										{
+											value="keko_unknown_weapon_briefing";
+											class type
+											{
+											type[]={
+												"STRING",
+											};
+											};
+										};
+									};
+								};
+								class type
+								{
+								type[]={
+									"ARRAY",
+								};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+class AddonsMetaData
+{
+	class List
+	{
+		items=37;
+		class Item2
+		{
+			author="Bohemia Interactive";
+			name="Arma 3 Adapt Episode - Buildings and Structures";
+			url="https://www.arma3.com";
+			className="A3_Structures_F_EPB";
+		};
+		class Item20
+		{
+			className="Gsg9_Uniforms";
+			author="PhoenixTREAL";
+			name="Gsg9_Uniforms";
+		};
+		class Item6
+		{
+			author="Bohemia Interactive";
+			className="A3_Structures_F";
+			url="https://www.arma3.com";
+			name="Arma 3 - Buildings and Structures";
+		};
+		class Item28
+		{
+			author="BW-Mod";
+			className="bwa3_mg5";
+			name="Bundeswehr - MG5";
+			url="http://www.bwmod.de/index.php/inhalt/download";
+		};
+		class Item4
+		{
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			className="ace_cargo";
+			url="http://ace3mod.com/";
+		};
+		class Item9
+		{
+			author="Bohemia Interactive";
+			className="A3_Structures_F_EPA";
+			name="Arma 3 Survive Episode - Buildings and Structures";
+			url="https://www.arma3.com";
+		};
+		class Item14
+		{
+			name="keko_faction_generic";
+			className="keko_faction_generic";
+			author="KEKO-Team";
+			url="https://github.com/Schwaggot/kellerkompanie-mods";
+		};
+		class Item1
+		{
+			name="Arma 3 Orange - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			className="A3_Props_F_Orange";
+			url="https://www.arma3.com";
+		};
+		class Item17
+		{
+			name="Arma 3 Alpha - Weapons and Accessories";
+			className="A3_Weapons_F";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item16
+		{
+			url="http://ace3mod.com/";
+			className="ace_compat_rhs_usf3";
+			author="ACE-Team";
+			name="ACE3 - RHS USF Compatibility";
+		};
+		class Item21
+		{
+			name="GSG9_Vest";
+			className="GSG9_Vest";
+			author="PhoenixTREAL";
+		};
+		class Item11
+		{
+			author="Red Hammer Studios";
+			className="rhsgref_c_air";
+			name="GREF Planes";
+			url="http://www.rhsmods.org/";
+		};
+		class Item10
+		{
+			url="https://www.arma3.com";
+			name="Arma 3 Nexus Update - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			className="A3_Props_F_Exp_A";
+		};
+		class Item22
+		{
+			url="http://ace3mod.com/";
+			author="ACE-Team";
+			name="ACE3 - Hearing";
+			className="ace_hearing";
+		};
+		class Item7
+		{
+			className="A3_Structures_F_Orange";
+			name="Arma 3 Orange - Buildings and Structures";
+			url="https://www.arma3.com";
+			author="Bohemia Interactive";
+		};
+		class Item23
+		{
+			author="ACE-Team";
+			className="ace_captives";
+			url="http://ace3mod.com/";
+			name="ACE3 - Captives";
+		};
+		class Item26
+		{
+			name="Bundeswehr - Weapon Optics";
+			author="BW-Mod";
+			url="http://www.bwmod.de/index.php/inhalt/download";
+			className="bwa3_optics";
+		};
+		class Item29
+		{
+			name="KEKO - Loadout";
+			url="https://github.com/Schwaggot/kellerkompanie-mods";
+			author="KEKO-Team";
+			className="keko_loadout";
+		};
+		class Item18
+		{
+			name="GSG9_Headwears";
+			className="GSG9_Headwears";
+		};
+		class Item34
+		{
+			name="Arma 3 - Military Buildings and Structures";
+			className="A3_Structures_F_Mil";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item3
+		{
+			className="ace_interaction";
+			url="http://ace3mod.com/";
+			author="ACE-Team";
+			name="ACE3 - Interaction";
+		};
+		class Item35
+		{
+			className="A3_Props_F_Exp";
+			name="Arma 3 Apex - Decorative and Mission Objects";
+			url="https://www.arma3.com";
+			author="Bohemia Interactive";
+		};
+		class Item12
+		{
+			className="A3_Characters_F_Orange";
+			name="Arma 3 Orange - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item8
+		{
+			name="Arma 3 Orange - Unarmored Land Vehicles";
+			url="https://www.arma3.com";
+			author="Bohemia Interactive";
+			className="A3_Soft_F_Orange";
+		};
+		class Item31
+		{
+			author="Bohemia Interactive";
+			className="A3_Characters_F";
+			name="Arma 3 Alpha - Characters and Clothing";
+			url="https://www.arma3.com";
+		};
+		class Item13
+		{
+			className="po_factions_afr";
+			name="po_factions_afr";
+			author="Leight, Keeway";
+		};
+		class Item33
+		{
+			className="Grille_SuperPuma_bpol";
+			name="Grille_SuperPuma_bpol";
+		};
+		class Item24
+		{
+			className="ace_medical";
+			url="http://ace3mod.com/";
+			name="ACE3 - Medical";
+			author="ACE-Team";
+		};
+		class Item19
+		{
+			author="PhoenixTREAL";
+			name="Ulbrichts_Helmets";
+			className="Ulbrichts_Helmets";
+		};
+		class Item30
+		{
+			className="A3_Modules_F_Curator";
+			name="Arma 3 Zeus Update - Scripted Modules";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item32
+		{
+			author="KEKO-Team";
+			name="KEKO - Common";
+			className="keko_common";
+			url="https://github.com/Schwaggot/kellerkompanie-mods";
+		};
+		class Item36
+		{
+			name="BlackOrder - Items";
+			className="blackorder_item";
+			author="Black Order-Team";
+			url="http://blackordermod.com";
+		};
+		class Item5
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			url="http://ace3mod.com/";
+			author="ACE-Team";
+		};
+		class Item0
+		{
+			className="CUP_Editor_Structures_Config";
+			name="CUP_Editor_Structures_Config";
+		};
+		class Item15
+		{
+			className="rhsusf_c_weapons";
+			name="RHSUSF Weapons & Accessories";
+			author="Red Hammer Studios";
+			url="http://www.rhsmods.org/";
+		};
+		class Item27
+		{
+			url="http://www.bwmod.de/index.php/inhalt/download";
+			author="BW-Mod";
+			className="bwa3_comp_ace";
+			name="Bundeswehr - ACE3";
+		};
+		class Item25
+		{
+			name="adv_aceSplint";
+			className="adv_aceSplint";
+			author="[SeL] Belbo // Adrian";
+		};
+	};
+};
