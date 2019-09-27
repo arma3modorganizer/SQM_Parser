@@ -11,6 +11,7 @@ pub struct Class{
 }
 
 impl Class{
+    #[inline]
     pub fn walk(&self, name: &str, mut file: &std::fs::File, depth: u64){
         let t = (0..depth).map(|_| "\t").collect::<String>();
         let t2 = (0..=depth).map(|_| "\t").collect::<String>();

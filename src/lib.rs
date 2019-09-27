@@ -9,6 +9,7 @@ clippy::use_debug,
 clippy::integer_arithmetic,
 clippy::default_trait_access,
 )]
+#![forbid(unsafe_code)]
 
 extern crate pest;
 #[macro_use]
@@ -27,16 +28,19 @@ mod sqm;
 #[grammar = "sqm.pest"]
 pub struct SQMParser;
 
+#[inline]
 pub fn deserialize_json(json_string: &str) -> File{
     serde_json::from_str(json_string).unwrap()
 }
 
+#[inline]
 pub fn serialize_sqm_string(sqm_data: &str, pretty: bool) -> String{
     let parsed: Pairs<Rule> = SQMParser::parse(Rule::file, sqm_data).unwrap();
     let parsed_file = parse_file(parsed);
     serialize_pairs(&parsed_file, pretty)
 }
 
+#[inline]
 pub fn serialize_pairs(filedata: &File, pretty: bool) -> String{
     if pretty {
         serde_json::to_string_pretty(&filedata).unwrap()
@@ -45,12 +49,14 @@ pub fn serialize_pairs(filedata: &File, pretty: bool) -> String{
     }
 }
 
+#[inline]
 pub fn serialize_to_sqm(filedata: &File, filename: &str){
     let file = std::fs::File::create(filename).unwrap();
 
     filedata.walk(&file);
 }
 
+#[inline]
 pub fn parse_file(filedata: Pairs<Rule>) -> File{
     let file = filedata.enumerate().nth(0).unwrap().1.into_inner();
 
@@ -81,6 +87,7 @@ pub fn parse_file(filedata: Pairs<Rule>) -> File{
     file_strc
 }
 
+#[inline]
 pub fn parse_class(item: Pair<Rule>) -> (String, Class) {
     let inner = item.into_inner();
     let mut retclass: Class = Class{
@@ -116,6 +123,7 @@ pub fn parse_class(item: Pair<Rule>) -> (String, Class) {
     (key, retclass)
 }
 
+#[inline]
 pub fn parse_item(item: Pair<Rule>) -> (String, String){
     let mut inner = item.into_inner();
     let key = get_string_from_pair(&inner.next().unwrap());
@@ -123,6 +131,7 @@ pub fn parse_item(item: Pair<Rule>) -> (String, String){
     (key, value)
 }
 
+#[inline]
 pub fn parse_array(item: Pair<Rule>) -> (String, Array){
     let inner = item.into_inner();
 
@@ -143,6 +152,7 @@ pub fn parse_array(item: Pair<Rule>) -> (String, Array){
     (key, retarray)
 }
 
+#[inline]
 fn get_string_from_pair(pair: &Pair<Rule>) -> String{
     String::from(pair.as_span().as_str())
 }

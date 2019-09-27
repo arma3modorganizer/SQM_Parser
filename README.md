@@ -5,6 +5,7 @@
 [![Crates.io](https://img.shields.io/crates/v/sqm_parser)](https://crates.io/crates/sqm_parser)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/arma3modorganizer/SQM_Parser/blob/master/LICENSE)
 [![Coverage Status](https://coveralls.io/repos/github/arma3modorganizer/SQM_Parser/badge.svg?branch=master)](https://coveralls.io/github/arma3modorganizer/SQM_Parser?branch=master)
+[![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
 
 Features:
   * Reading SQM files to rust structs

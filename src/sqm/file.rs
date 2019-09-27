@@ -12,6 +12,7 @@ pub struct File{
 }
 
 impl File {
+    #[inline]
     pub fn walk(&self, mut file: &std::fs::File){
         let depth: u64 = 0;
 
